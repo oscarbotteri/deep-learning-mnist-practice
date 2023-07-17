@@ -26,6 +26,6 @@ jobs:
           cd ui
           npm run build
           git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
-          npx --yes gh-pages -d ui/dist -u "github-actions-bot <actions-bot@github.com>"
+          npx --yes gh-pages -d dist -u "github-actions-bot <actions-bot@github.com>"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
