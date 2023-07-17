@@ -130,9 +130,12 @@ function App() {
       }
     }
 
-    const tensor4 = tf.tensor4d([ data ]);
-    const prediction = model.predict(tensor4).dataSync();
-    const mostSimilar = prediction.indexOf(Math.max.apply(null, prediction));
+    if (!model) return
+
+    const tensor = tf.tensor4d([ data ]);
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+    const values = (model.predict(tensor) as tf.Tensor<tf.Rank>).dataSync();
+    const mostSimilar = values.indexOf(Math.max.apply(null, [...values]));
 
     setPrediction(mostSimilar);
   }
@@ -143,9 +146,9 @@ function App() {
         <div className="w50 text-light text-center">
           <h1>Number predictor</h1>
           <p className="fs-4">
-            Small React application using <span className="badge bg-primary">tensorflowjs</span>
+            Small React application using <span className="badge bg-primary">tensorflowjs</span>{' '}
             to load a trained neural<br />
-            network model using <span className="badge bg-primary">mmist</span>
+            network model using <span className="badge bg-primary">mmist</span>{' '}
             dataset to predict handwritten digits.
           </p>
         </div>
