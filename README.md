@@ -1,7 +1,7 @@
 # Deep Learning mnist Practice
 
 My first NN to using `tensorflow` to classify images using `mnist` dataset.
-Available UI to test the model
+[Available UI to test the model](https://oscarbotteri.github.io/deep-learning-mnist-practice/)
 
 ## How to run
 
