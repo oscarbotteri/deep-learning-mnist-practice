@@ -25,4 +25,6 @@ jobs:
         run: |
           cd ui
           npm run build
-          npx --yes gh-pages -d dist
+          npx --yes gh-pages -d dist -u "github-actions-bot <actions-bot@github.com>"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
