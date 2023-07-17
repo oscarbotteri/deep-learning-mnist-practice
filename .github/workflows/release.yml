@@ -1,0 +1,28 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+
+      - name: Install dependencies
+        id: version
+        run: |
+          cd ui
+          npm ci
+
+      - name: Generate build and deploy
+        run: |
+          cd ui
+          npm run build
+          npx --yes gh-pages -d dist
